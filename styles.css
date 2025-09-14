@@ -267,7 +267,7 @@ dialog::backdrop {
 #musicToggle {   
   position: fixed;
   bottom: 20px;    /* 🔥 lo mandamos abajo */
-  right: 20px;     /* 🔥 esquina derecha */
+  right: 40px; /* 20px */    /* 🔥 esquina derecha */
   background: (254, 245, 238);  
   border: none;
   padding: 10px 12px;
