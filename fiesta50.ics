@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TuInvitacion//Cumpleaños 50//ES
+BEGIN:VEVENT
+UID:fiesta-50@example.com
+DTSTAMP:20250816T000000Z
+DTSTART:20251123T210000
+DTEND:20251124T050000
+SUMMARY:Fiesta 50 años Diego y Mariano
+LOCATION:Cantina Club Atletico Empalme - Pje Sgto Cabral 480
+DESCRIPTION:¡No faltes a la fiesta de los 50 de Diego y Mariano!
+END:VEVENT
+END:VCALENDAR

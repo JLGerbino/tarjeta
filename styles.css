@@ -1,0 +1,432 @@
+/* =====================
+   Estilo Global
+===================== */
+body {
+  font-family: "Ubuntu Mono", monospace;/*'Open Sans', sans-serif;*/
+  background-color:rgb(141, 102, 98);/*#82dbd5;*//*#ee4848*/ ;   /* Fondo blanco */
+  color:rgb(254, 245, 238)/*  white */;  /*#0c0c0c;*/           /* negro */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: rgb(141, 102, 98);
+}
+h2, h3, p{
+  font-family: "Caveat", cursive;/*'Great Vibes', cursive;*/
+  color: rgb(254, 245, 238) ;/*#ee4848;*//*white;*/
+}
+.abajo{
+  background-color:rgb(141, 102, 98);
+}
+.textoDialogo{
+  font-family: "Ubuntu Mono", monospace;
+  color:rgb(254, 245, 238) ;/*#ee4848;*//*white;*/
+}
+
+h1, h4, h5, h6 {
+  /*font-family: 'Great Vibes', cursive;*/
+  color:white; /*black;*/
+  margin: 10px 0;
+}
+.whats{
+  font-family: "Ubuntu Mono", monospace;
+  text-decoration: none;
+  color:rgb(254, 245, 238) ; /*#ee4848;*/ /*white;*/  
+}
+
+.btn-agendar{
+  text-decoration: none;
+  color: white;
+}
+
+.titulo{
+  font-size: 30px;
+}
+
+.subtitulo{
+  font-size: 20px;
+}
+
+.frases{
+  font-family: "Caveat", cursive;
+  color:white;
+  font-size: 35px; /*  25px */
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.mensaje-fiesta {
+  font-family: "Caveat", cursive;
+  font-size: 3.5em;
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  animation: bounce 1.2s infinite;
+  margin-top: 20px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+/* p{
+  color: white;
+  font-family:"Ubuntu Mono", monospace;
+} */
+
+button {
+  font-family: "Ubuntu Mono", monospace;
+  background: rgb(239, 205, 190) ;/*#b8eeea;*//*#ee4848;*/
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background:rgb(239, 205, 190); /*#ee4848;*/
+  transform: scale(1.05);
+}
+
+/* =====================
+   Encabezado con imagen
+===================== */
+
+header img {
+  width: 100%;
+  max-height: 1200px;
+  object-fit: contain;
+  background-color:rgb(141, 102, 98); 
+  display: block;
+ /*  border-bottom: 3px solid white; */
+}
+/* agregue esto para las bolas disco */
+.faltan-contenedor {
+  display: flex;
+  justify-content: center; /* centra en horizontal */
+  align-items: center;     /* centra en vertical */
+  gap: 15px;               /* espacio entre gifs y texto */
+  margin: 20px 0;
+}
+
+.comillas{
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+/* header img {
+  width: 100%;
+  max-height: 1200px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 3px solid #d4af37;
+} */
+
+/* =====================
+   Carrusel
+===================== */
+.carousel {
+  position: relative;
+  max-width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.carousel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel img.active {
+  opacity: 1;
+}
+
+/* =====================
+   Cuenta regresiva
+===================== */
+#timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: bold;
+  margin: 40px 0;
+}
+
+.faltan{
+  font-size: 50px;
+  color:rgb(254, 245, 238);
+}
+
+.time-box {
+  font-size: 30px;
+  text-align: center;
+  background:rgb(141, 102, 98); /* Negro más claro */
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px grey(212,175,55,0.5);
+  min-width: 80px;
+  animation: fadeInUp 1s ease;
+}
+
+.time-box span {
+  display: block;
+  font-size: 3.5em;/*2em*/
+  color:rgb(254, 245, 238);/*  skyblue *//*#ee4848;*/
+  transition: transform 0.5s;
+}
+
+.time-box small {
+  font-size: 1.5em;/*0.8em*/
+  color: #474646/*#bbb*/;
+}
+
+/* Flip animación */
+.flip {
+  display: inline-block;
+  animation: none;
+  font-family: "Ubuntu Mono", monospace; /*"Caveat", cursive;*/
+}
+
+.flip.animate {
+  animation: flipAnim 0.5s ease;
+}
+
+@keyframes flipAnim {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+/* =====================
+   Bloques de Evento
+===================== */
+.evento-box {
+  background: rgb(141, 102, 98);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  /* box-shadow: 0 4px 12px white; */
+  animation: fadeIn 1s ease;
+}
+
+.evento-box h3 {
+  margin-bottom: 10px;
+}
+
+.evento-box p {
+  color: #474646;    
+}
+
+/* =====================
+   Diálogos
+===================== */
+dialog {
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 500px;
+  background:rgb(141, 102, 98);/*#111;*/
+  color: #d4af37;
+  box-shadow: 0 8px 20px rgba(248, 248, 248, 0.5);
+}
+
+dialog::backdrop {
+  background: rgba(0,0,0,0.8);
+}
+
+/* =====================
+   Animaciones Globales
+===================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*boton musica*/
+#musicToggle {   
+  position: fixed;
+  bottom: 20px;    /* 🔥 lo mandamos abajo */
+  right: 20px;     /* 🔥 esquina derecha */
+  background: (254, 245, 238);  
+  border: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.2s;
+  z-index: 1000;   /* siempre arriba */
+}
+
+#musicToggle:hover {
+  background:(254, 245, 238);
+  color: black;
+  transform: scale(1.1);
+}
+
+/* =====================
+   Formulario de consultas
+===================== */
+form {
+  max-width: 500px;
+  margin: 40px auto;
+  background:rgb(141, 102, 98);/* #111;*/ /* igual que los boxes del evento */
+  padding: 25px;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4); */
+  text-align: left;
+  animation: fadeInUp 1s ease;
+}
+
+form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color:rgb(254, 245, 238);/*#ee4848*//*#fffffe;*/ /* dorado */
+}
+
+form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+  color:rgb(254, 245, 238);/*#ee4848;*//*#fdfdfc;*/
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgb(254, 245, 238);
+  border-radius: 8px;
+  font-size: 1em;
+  box-sizing: border-box;
+  background: rgb(141, 102, 98); /* skyblue; *//*#ee4848;*//*#000;*/ /* mantiene el negro */
+  color: rgb(254, 245, 238);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: white;
+  outline: none;
+  box-shadow: 0 0 6px rgba(252, 251, 249, 0.6);
+}
+
+form button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.agenda-opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.agenda-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  background: #fff;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.agenda-btn:hover {
+  background: #f7f7f7;
+  transform: scale(1.02);
+}
+
+
+
+
+
+/* =====================
+   Ajustes Responsive
+===================== */
+@media (max-width: 768px) {
+  /* Cuenta regresiva más compacta */
+  #timer {
+    gap: 10px;
+    flex-wrap: wrap;   /* 🔥 si no entra, pasa a dos filas */
+  }
+
+  .time-box {
+    min-width: 60px;
+    padding: 10px;
+  }
+
+  .time-box span {
+    font-size: 1.5em;
+  }
+
+  .time-box small {
+    font-size: 0.7em;
+  }
+
+  /* Botón de música más chico y más arriba */
+  #musicToggle {
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 10px;
+    font-size: 1em;
+    z-index: 9999;
+  }
+}
+
+@media (max-width: 480px) {
+  #timer {
+    gap: 8px;
+  }
+
+  .time-box {
+    min-width: 50px;
+    padding: 8px;
+  }
+
+  .time-box span {
+    font-size: 1.2em;
+  }
+
+  .time-box small {
+    font-size: 0.6em;
+  }
+
+  #musicToggle {
+    bottom: 8px;
+    right: 8px;
+    font-size: 0.9em;
+    padding: 6px 8px;
+  }
+
+  header img {
+  width: 100%;
+  max-height: 1200px;  
+}
+}
