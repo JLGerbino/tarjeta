@@ -134,7 +134,14 @@ header img {
 /* =====================
    Carrusel
 ===================== */
-.carousel {
+
+.carousel-item img {
+  height: 300px;        /* ajustá según te guste */
+  object-fit: cover;    /* recorta la imagen sin deformarla */
+  width: 100%;          /* siempre al ancho del carrusel */
+}
+
+/* .carousel {
   position: relative;
   max-width: 100%;
   height: 400px;
@@ -154,7 +161,7 @@ header img {
 
 .carousel img.active {
   opacity: 1;
-}
+} */
 
 /* =====================
    Cuenta regresiva
