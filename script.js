@@ -136,7 +136,7 @@ function generarLinks(evento) {
 VERSION:2.0
 PRODID:-//TuInvitacion//Fiesta//ES
 BEGIN:VEVENT
-UID:fiesta-50@example.com
+UID:fiesta@example.com 
 DTSTAMP:${inicioGoogle}
 DTSTART:${inicioGoogle}
 DTEND:${finGoogle}
@@ -161,3 +161,4 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("icsBtn").href = icsURL;
 });
 
+/* UID:fiesta-50@example.com */
