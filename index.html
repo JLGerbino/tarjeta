@@ -76,7 +76,7 @@
   <!-- carrusel boostrap -->
 
 
-   <div id="carouselExampleIndicators" class="carousel slide">
+   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -90,7 +90,7 @@
           <img src="fotos/foto2.jpg" class="d-block w-100" alt="Foto 2">
         </div>
         <div class="carousel-item">
-          <img src="fotos/foto3.jpg" class="d-block w-100" alt="Foto 3">
+          <img src="fotos/foto3.png" class="d-block w-100" alt="Foto 3">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -275,24 +275,34 @@
 
         <div class="agenda-opciones">
           <!-- Google Calendar -->
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fiesta+15+a%C3%B1os+Diego+y+Mariano&dates=20251123T210000/20251124T030000&details=%C2%A1No+faltes+a+la+fiesta+de+los+50+de+Diego+y+Mariano!&location=Pje+Sgto+Cabral+480&sf=true&output=xml"
+            <!-- Google -->
+  <a id="googleBtn" target="_blank" class="agenda-btn">
+    <img src="fotos/google.png" alt="Google" width="24">
+    Google Calendar
+  </a>
+          <!-- <a id="googleBtn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Fiesta+15+a%C3%B1os+Diego+y+Mariano&dates=20251123T210000/20251124T030000&details=%C2%A1No+faltes+a+la+fiesta+de+los+50+de+Diego+y+Mariano!&location=Pje+Sgto+Cabral+480&sf=true&output=xml"
             target="_blank" class="agenda-btn">
             <img src="fotos/google.png" alt="Google Calendar" width="24">
             Google
-          </a>
+          </a> -->
           <!-- Apple Calendar -->
-           <a href="https://jlgerbino.github.io/invitacion/fiesta50.ics" download class="agenda-btn">
+           <a id="icsBtn" href="https://jlgerbino.github.io/invitacion/fiesta50.ics" download class="agenda-btn">
              <img src="fotos/apple.png" alt="Apple Calendar" width="24">
             Apple Calendar
           </a>          
-          <!-- Outlook -->
-          <a href="https://outlook.live.com/calendar/0/deeplink/compose?subject=Fiesta+50+a%C3%B1os+Diego+y+Mariano&body=%C2%A1No+faltes+a+la+fiesta!&startdt=2025-11-23T21:00:00&enddt=2025-11-24T03:00:00&location=Pje+Sgto+Cabral+480"
+          <!-- Outlook -->          
+  <a id="outlookBtn" target="_blank" class="agenda-btn">
+    <img src="fotos/outlook.webp" alt="Outlook" width="24">
+    Outlook
+  </a>
+
+          <!-- <a id="outlookBtn" href="https://outlook.live.com/calendar/0/deeplink/compose?subject=Fiesta+50+a%C3%B1os+Diego+y+Mariano&body=%C2%A1No+faltes+a+la+fiesta!&startdt=2025-11-23T21:00:00&enddt=2025-11-24T03:00:00&location=Pje+Sgto+Cabral+480"
             target="_blank" class="agenda-btn">
             <img src="fotos/outlook.webp" alt="Outlook" width="24">
             Outlook
-          </a>
+          </a> -->
           <!-- Calendarios genéricos (ICS) -->
-          <a href="https://jlgerbino.github.io/invitacion/fiesta50.ics" download class="agenda-btn">
+          <a id="icsBtn" href="https://jlgerbino.github.io/invitacion/fiesta50.ics" download class="agenda-btn">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Calendar_font_awesome.svg" alt="ICS"
               width="24">
             Otros
