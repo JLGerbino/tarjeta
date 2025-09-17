@@ -1,36 +1,33 @@
-/* =====================
-   Estilo Global
-===================== */
+/*Estilo Global*/
 body {
   font-family: "Ubuntu Mono", monospace;/*'Open Sans', sans-serif;*/
-  background-color:rgb(141, 102, 98);/*#82dbd5;*//*#ee4848*/ ;   /* Fondo blanco */
-  color:rgb(254, 245, 238)/*  white */;  /*#0c0c0c;*/           /* negro */
+  background-color:rgb(141, 102, 98);
+  color:rgb(254, 245, 238);
   margin: 0;
   padding: 0;
   text-align: center;
   border: rgb(141, 102, 98);
 }
 h2, h3, p{
-  font-family: "Caveat", cursive;/*'Great Vibes', cursive;*/
-  color: rgb(254, 245, 238) ;/*#ee4848;*//*white;*/
+  font-family: "Caveat", cursive;
+  color: rgb(254, 245, 238) ;
 }
 .abajo{
   background-color:rgb(141, 102, 98);
 }
 .textoDialogo{
   font-family: "Ubuntu Mono", monospace;
-  color:rgb(254, 245, 238) ;/*#ee4848;*//*white;*/
+  color:rgb(254, 245, 238) ;
 }
 
-h1, h4, h5, h6 {
-  /*font-family: 'Great Vibes', cursive;*/
-  color:white; /*black;*/
+h1, h4, h5, h6 {  
+  color:white; 
   margin: 10px 0;
 }
 .whats{
   font-family: "Ubuntu Mono", monospace;
   text-decoration: none;
-  color:rgb(254, 245, 238) ; /*#ee4848;*/ /*white;*/  
+  color:rgb(254, 245, 238) ;  
 }
 
 .btn-agendar{
@@ -69,15 +66,9 @@ h1, h4, h5, h6 {
   50% { transform: translateY(-10px); }
 }
 
-
-/* p{
-  color: white;
-  font-family:"Ubuntu Mono", monospace;
-} */
-
 button {
   font-family: "Ubuntu Mono", monospace;
-  background: rgb(239, 205, 190) ;/*#b8eeea;*//*#ee4848;*/
+  background: rgb(239, 205, 190) ;
   color:#474646;
   border: none;
   padding: 12px 20px;
@@ -88,13 +79,11 @@ button {
 }
 
 button:hover {
-  background:rgb(239, 205, 190); /*#ee4848;*/
+  background:rgb(239, 205, 190); 
   transform: scale(1.05);
 }
 
-/* =====================
-   Encabezado con imagen
-===================== */
+/*Encabezado con imagen*/
 
 header img {
   width: 100%;
@@ -105,13 +94,13 @@ header img {
  /*  border-bottom: 3px solid white; */
 }
 /* agregue esto para las bolas disco */
-.faltan-contenedor {
+/* .faltan-contenedor {
   display: flex;
-  justify-content: center; /* centra en horizontal */
-  align-items: center;     /* centra en vertical */
-  gap: 15px;               /* espacio entre gifs y texto */
+  justify-content: center; 
+  align-items: center;     
+  gap: 15px;               
   margin: 20px 0;
-}
+} */
 
 .comillas{
   margin-top: 20px;
@@ -122,50 +111,15 @@ header img {
   margin-bottom: 1px;
 }
 
-
-/* header img {
-  width: 100%;
-  max-height: 1200px;
-  object-fit: cover;
-  display: block;
-  border-bottom: 3px solid #d4af37;
-} */
-
-/* =====================
-   Carrusel
-===================== */
-
+/*Carrusel*/
 .carousel-item img {
-  height: 300px;        /* ajustá según te guste */
+  height: 300px;        
   object-fit: cover;    /* recorta la imagen sin deformarla */
-  width: 100%;          /* siempre al ancho del carrusel */
+  width: 100%;          
 }
 
-/* .carousel {
-  position: relative;
-  max-width: 100%;
-  height: 400px;
-  overflow: hidden;
-}
 
-.carousel img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.carousel img.active {
-  opacity: 1;
-} */
-
-/* =====================
-   Cuenta regresiva
-===================== */
+/*Cuenta regresiva*/
 #timer {
   display: flex;
   justify-content: center;
@@ -182,7 +136,7 @@ header img {
 .time-box {
   font-size: 30px;
   text-align: center;
-  background:rgb(141, 102, 98); /* Negro más claro */
+  background:rgb(141, 102, 98); 
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 8px grey(212,175,55,0.5);
@@ -191,9 +145,10 @@ header img {
 }
 
 .time-box span {
+  font-family: "Caveat", cursive;
   display: block;
   font-size: 3.5em;/*2em*/
-  color:rgb(254, 245, 238);/*  skyblue *//*#ee4848;*/
+  color:rgb(254, 245, 238);
   transition: transform 0.5s;
 }
 
@@ -206,7 +161,7 @@ header img {
 .flip {
   display: inline-block;
   animation: none;
-  font-family: "Ubuntu Mono", monospace; /*"Caveat", cursive;*/
+  font-family: "Ubuntu Mono", monospace; 
 }
 
 .flip.animate {
@@ -219,9 +174,7 @@ header img {
   100% { transform: rotateX(0deg); }
 }
 
-/* =====================
-   Bloques de Evento
-===================== */
+/*Bloques de Evento*/
 .evento-box {
   background: rgb(141, 102, 98);
   border-radius: 12px;
@@ -240,9 +193,7 @@ header img {
   color:rgb(254, 245, 238);    
 }
 
-/* =====================
-   Diálogos
-===================== */
+/*Diálogos*/
 dialog {
   border: none;
   border-radius: 12px;
@@ -257,9 +208,7 @@ dialog::backdrop {
   background: rgba(0,0,0,0.8);
 }
 
-/* =====================
-   Animaciones Globales
-===================== */
+/*Animaciones Globales*/
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -297,35 +246,11 @@ dialog::backdrop {
   transform: scale(1.1);
 }
 
-
-/* #musicToggle {   
-  position: fixed;
-  bottom: 20px; */    /* 🔥 lo mandamos abajo */
-  /* right: 40px; */ /* 20px */    /* 🔥 esquina derecha */
-  /* background: (254, 245, 238);  
-  border: none;
-  padding: 10px 12px;
-  border-radius: 50%;
-  font-size: 1.2em;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  transition: transform 0.2s, background 0.2s; */
-  /* z-index: 1000; */   /* siempre arriba */
-/* } */
-
-/* #musicToggle:hover {
-  background:(254, 245, 238);
-  color: black;
-  transform: scale(1.1);
-} */
-
-/* =====================
-   Formulario de consultas
-===================== */
+/*Formulario de consultas*/
 form {
   max-width: 500px;
   margin: 40px auto;
-  background:rgb(141, 102, 98);/* #111;*/ /* igual que los boxes del evento */
+  background:rgb(141, 102, 98);
   padding: 25px;
   border-radius: 12px;
   /* box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4); */
@@ -336,14 +261,14 @@ form {
 form h3 {
   text-align: center;
   margin-bottom: 20px;
-  color:rgb(254, 245, 238);/*#ee4848*//*#fffffe;*/ /* dorado */
+  color:rgb(254, 245, 238);
 }
 
 form label {
   display: block;
   margin: 12px 0 6px;
   font-weight: bold;
-  color:rgb(254, 245, 238);/*#ee4848;*//*#fdfdfc;*/
+  color:rgb(254, 245, 238);
 }
 
 form input,
@@ -354,7 +279,7 @@ form textarea {
   border-radius: 8px;
   font-size: 1em;
   box-sizing: border-box;
-  background: rgb(141, 102, 98); /* skyblue; *//*#ee4848;*//*#000;*/ /* mantiene el negro */
+  background: rgb(141, 102, 98); 
   color: rgb(254, 245, 238);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -401,14 +326,12 @@ form button {
 
 
 
-/* =====================
-   Ajustes Responsive
-===================== */
+/*Ajustes Responsive*/
 @media (max-width: 768px) {
   /* Cuenta regresiva más compacta */
   #timer {
     gap: 10px;
-    flex-wrap: wrap;   /* 🔥 si no entra, pasa a dos filas */
+    flex-wrap: wrap;   
   }
 
   .time-box {

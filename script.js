@@ -44,7 +44,7 @@ function updateFlip(id, newValue) {
 }
 
 // Cuenta regresiva
-const targetDate = new Date("2025-11-23T21:00:00").getTime();
+const targetDate = new Date("2025-12-13T21:00:00").getTime();
 
 const countdown = setInterval(() => {
     const now = new Date().getTime();
