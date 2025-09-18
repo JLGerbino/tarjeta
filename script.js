@@ -104,18 +104,18 @@ function cerrarDialogo(id) {
 
 // 🎉 Datos del evento (modificás solo acá)
 const evento = {
-  titulo: "Fiesta 40 años Diego y Mariano",
+  titulo: "Fiesta 15 años de Carla",
   descripcion: "¡No faltes a la fiesta de 15 de Carla!",
   ubicacion: "La Fontana Eventos - Ruta 177 y calle Tito Martin - Villa Cosntitución",
   inicio: "2025-12-13T21:00:00", // formato ISO
   fin: "2025-12-14T05:00:00"
 };
 
-// 🔗 Generar URLs dinámicas
+// Generador de URLs dinámicas
 function generarLinks(evento) {
   // Google Calendar → fechas en formato YYYYMMDDTHHmmss
-  const inicioGoogle = evento.inicio.replace(/[-:]/g, "").split(".")[0] + "Z";
-  const finGoogle = evento.fin.replace(/[-:]/g, "").split(".")[0] + "Z";
+  const inicioGoogle = evento.inicio.replace(/[-:]/g, "").split(".")[0];
+  const finGoogle = evento.fin.replace(/[-:]/g, "").split(".")[0];
 
   const googleURL = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
     `&text=${encodeURIComponent(evento.titulo)}` +
@@ -152,13 +152,14 @@ END:VCALENDAR`;
   return { googleURL, outlookURL, icsURL };
 }
 
-// 🔥 Insertar en los botones (suponiendo que tenés <a id="googleBtn">, etc.)
+// Insertar en los botones
 window.addEventListener("DOMContentLoaded", () => {
   const { googleURL, outlookURL, icsURL } = generarLinks(evento);
 
   document.getElementById("googleBtn").href = googleURL;
   document.getElementById("outlookBtn").href = outlookURL;
   document.getElementById("icsBtn").href = icsURL;
+  document.getElementById("icsOtros").href = icsURL;
 });
 
 /* UID:fiesta-50@example.com */
