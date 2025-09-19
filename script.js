@@ -1,14 +1,3 @@
-
-// Carrusel
-let index = 0;
-const images = document.querySelectorAll('.carousel img');
-
-setInterval(() => {
-    images[index].classList.remove('active');
-    index = (index + 1) % images.length;
-    images[index].classList.add('active');
-}, 3000);
-
 // Control de música
 const musicToggle = document.getElementById("musicToggle");
 const iconPlay = document.getElementById("iconPlay");
@@ -75,39 +64,12 @@ function cerrarDialogo(id) {
   document.getElementById(id).close();
 }
 
-/*animacion fiesta*/
-/* lottie.loadAnimation({
-  container: document.getElementById('iconFiesta'),
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  path: 'https://lottie.host/250fc3f4-bc3e-4a6d-8328-26ef9a8d34b8/b2yyeGQj7o.json'
-}); */
-
-/*animacion lugar*/
-/* lottie.loadAnimation({
-  container: document.getElementById('iconLugar'),
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  path: 'https://lottie.host/7cccf2fc-84a6-4a8b-a6cb-9d321b2d5e0d/m7lbhhQe1D.json'
-}); */
-
-/*animacion ubicacion*/
-/* lottie.loadAnimation({
-  container: document.getElementById('iconDireccion'),
-  renderer: 'svg',
-  loop: true,
-  autoplay: true, */  
-  /*path: 'https://lottie.host/89324d9e-3eaf-4a38-b244-19cda3c6a391/2zjsRjvUwl.json'*/
-/* }); */
-
-// 🎉 Datos del evento (modificás solo acá)
+//Datos del evento (modificar acá)
 const evento = {
   titulo: "Fiesta 15 años de Carla",
   descripcion: "¡No faltes a la fiesta de 15 de Carla!",
   ubicacion: "La Fontana Eventos - Ruta 177 y calle Tito Martin - Villa Cosntitución",
-  inicio: "2025-12-13T21:00:00", // formato ISO
+  inicio: "2025-12-13T21:00:00", 
   fin: "2025-12-14T05:00:00"
 };
 
@@ -162,4 +124,3 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("icsOtros").href = icsURL;
 });
 
-/* UID:fiesta-50@example.com */
