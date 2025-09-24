@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitación de Fiesta de 15</title>
+  <title>Invitación Fiesta de 15</title>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link
@@ -204,12 +204,11 @@
       </div>
 
       <!--Bloque de tarjeta -->
-      <div class="evento-box">
-
         <div class="separador">
           <img src="fotos/separador1.png" alt="separador">
         </div>
 
+      <div class="evento-box">
         <!-- <div class="icon info" id="iconInfo">
           <img src="fotos/icons8-información.gif" alt="Ubicación" class="icono-info">
         </div> -->
@@ -234,11 +233,11 @@
       </div>
 
       <!--Bloque de Dress -->
-      <div class="evento-box">
-
         <div class="separador">
           <img src="fotos/separador1.png" alt="separador">
         </div>
+
+        <div class="evento-box">
         <!-- <div class="icon agendar" id="iconAgendar">
           <img src="fotos/moño.gif" alt="Ubicación" class="icono-mapa">
         </div> -->
@@ -361,7 +360,29 @@
       </dialog>
 
       <!-- Formulario -->
-      <form action="https://formspree.io/f/xgvzbvqy" method="POST">
+
+           <form id="miFormulario" action="https://formspree.io/f/xgvzbvqy" method="POST">
+  <h3>Consultas y canciones para la fiesta</h3>
+  
+  <label for="nombre">Tu nombre:</label>
+  <input type="text" id="nombre" name="nombre" required>
+
+  <label for="consulta">Consulta:</label>
+  <textarea id="consulta" name="consulta" rows="3"></textarea>
+
+  <label for="cancion">Canción que te gustaría escuchar:</label>
+  <input type="text" id="cancion" name="cancion">
+
+  <button type="submit">Enviar</button>
+</form>
+
+<p id="mensaje" style="color:white; display:none; margin-top:10px;">
+  ¡Gracias! Tu mensaje fue enviado.
+</p>
+
+
+
+     <!--  <form action="https://formspree.io/f/xgvzbvqy" method="POST">
         <h3>Consultas y canciones para la fiesta</h3>
         <label for="nombre">Tu nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -373,7 +394,7 @@
         <input type="text" id="cancion" name="cancion">
 
         <button type="submit">Enviar</button>
-      </form>
+      </form> -->
 
       <script src="script.js"></script>
       <footer class="pie3">
