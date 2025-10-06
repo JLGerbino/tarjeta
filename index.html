@@ -20,6 +20,35 @@
     />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
 
+
+<!-- Firebase -->
+<script type="module">
+  // Importa las funciones necesarias desde Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+  // Configuración de tu proyecto
+  const firebaseConfig = {
+    apiKey: "AIzaSyA-QwW-E22kLuc5_2-ohN2Z9IJ_2rjaGz8",
+    authDomain: "fiestacarla-7c026.firebaseapp.com",
+    projectId: "fiestacarla-7c026",
+    storageBucket: "fiestacarla-7c026.firebasestorage.app",
+    messagingSenderId: "97543193817",
+    appId: "1:97543193817:web:5948e337d2492f2d866ac8"
+  };
+
+  // Inicializa Firebase y Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Hacemos que db quede accesible desde script.js
+  window.db = db;
+  window.addDoc = addDoc;
+  window.collection = collection;
+  window.serverTimestamp = serverTimestamp;
+</script>
+
+
 </head>
 
 <body>  
@@ -150,6 +179,30 @@
       <div class="comillas">
         <img src="fotos/comillas-abajo.png" alt="comillas" class="icono-mapa">
       </div>
+
+<!-- Confirmar asistencia -->
+  <!--     <form id="confirmacionForm">
+  <h3>Confirmá tu asistencia</h3>
+
+  <label for="nombre">Tu nombre:</label>
+  <input type="text" id="nombre" name="nombre" required>
+
+  <label for="cantidad">¿Cuántas personas vienen?</label>
+  <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+
+  <label for="comentario">Comentario (opcional):</label>
+  <textarea id="comentario" name="comentario"></textarea>
+
+  <button type="submit">Enviar confirmación</button>
+</form>
+
+<p id="mensaje" style="color:white; display:none; margin-top:10px;">
+  ¡Gracias! Tu asistencia fue registrada.
+</p> -->
+
+
+
+
 
       <!--Bloque de Lugar -->
       <div class="separador">
@@ -325,6 +378,27 @@
       <!-- Dialogo Confirmar Asistencia -->
       <dialog id="lugar">
         <h2>Confirmale tu presencia a</h2>
+        <!-- Confirmar asistencia -->
+      <form id="confirmacionForm">  
+
+  <label for="nombre">Tu nombre:</label>
+  <input type="text" id="nombre" name="nombre" required>
+
+  <label for="cantidad">¿Cuántas personas vienen?</label>
+  <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+
+  <label for="comentario">Comentario (opcional):</label>
+  <textarea id="comentario" name="comentario"></textarea>
+
+  <button type="submit">Enviar confirmación</button>
+</form>
+
+<p id="mensaje" style="color:white; display:none; margin-top:10px;">
+  ¡Gracias! Tu asistencia fue registrada.
+</p>
+
+
+
         <!-- <a class="whats" href="https://wa.me/543364406580"><img src="fotos/whatsapp.png" alt="WhatsApp" height="18px"
             width="18px" /> a Diego</a>
 

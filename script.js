@@ -125,7 +125,99 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 //Manejo del formulario
-const form = document.getElementById("miFormulario");
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("miFormulario");
+  const mensaje = document.getElementById("mensaje");
+  const enviarBtn = form.querySelector('button[type="submit"]');
+
+  if (!form) return console.warn("No se encontró #miFormulario en el DOM");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // desactivar botón para evitar envíos dobles
+    enviarBtn.disabled = true;
+    enviarBtn.textContent = "Enviando...";
+
+    // preparar datos
+    const datos = new FormData(form);
+
+    try {
+      const respuesta = await fetch(form.action, {
+        method: form.method.toUpperCase() || "POST",
+        body: datos,
+        headers: { "Accept": "application/json" } // pedimos JSON para verificar errores
+      });
+
+      if (respuesta.ok) {
+        // si Formspree devuelve JSON con mensaje:
+        let data;
+        try { data = await respuesta.json(); } catch { data = null; }
+
+        form.reset();
+        mensaje.textContent = "¡Gracias! Tu mensaje fue enviado.";
+        mensaje.style.display = "block";
+
+        // ocultar mensaje y reactivar botón
+        setTimeout(() => {
+          mensaje.style.display = "none";
+        }, 3000);
+
+      } else {
+        // lee posibles errores en JSON
+        let errText = `Error ${respuesta.status}`;
+        try {
+          const errJson = await respuesta.json();
+          if (errJson && errJson.error) errText = errJson.error;
+        } catch {}
+        alert("No se pudo enviar el formulario: " + errText);
+        console.error("Form submit failed:", respuesta);
+      }
+    } catch (err) {
+      alert("Error de red. Revisa tu conexión o la consola.");
+      console.error("Fetch error:", err);
+    } finally {
+      enviarBtn.disabled = false;
+      enviarBtn.textContent = "Enviar";
+    }
+  });
+});
+
+/* firebase */
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("confirmacionForm");
+  const mensaje = document.getElementById("mensaje");
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nombre = form.nombre.value.trim();
+      const cantidad = parseInt(form.cantidad.value);
+      const comentario = form.comentario.value.trim();
+
+      try {
+        await addDoc(collection(db, "confirmaciones"), {
+          nombre,
+          cantidad,
+          comentario,
+          timestamp: serverTimestamp(),
+        });
+
+        form.reset();
+        mensaje.style.display = "block";
+        setTimeout(() => (mensaje.style.display = "none"), 3000);
+      } catch (error) {
+        console.error("Error al guardar:", error);
+        alert("Hubo un error al registrar tu asistencia. Intenta de nuevo.");
+      }
+    });
+  }
+});
+
+
+/* const form = document.getElementById("miFormulario");
 const mensaje = document.getElementById("mensaje");
 
 form.addEventListener("submit", async function (e) {
@@ -148,4 +240,4 @@ form.addEventListener("submit", async function (e) {
   } else {
     alert("Hubo un error al enviar. Intenta de nuevo.");
   }
-});
+}); */
