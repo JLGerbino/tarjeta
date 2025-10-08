@@ -1,21 +1,22 @@
+// === Importar Firebase ===
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { 
   getFirestore, collection, query, orderBy, onSnapshot 
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+  // === Elementos del DOM (puede que algunos no existan según la página) ===
   const loginDiv = document.getElementById("login");
   const panelDiv = document.getElementById("panel");
   const tabla = document.getElementById("tablaConfirmaciones");
   const btnLogin = document.getElementById("btnLogin");
   const inputClave = document.getElementById("clave");
-
   const totalInvitados = document.getElementById("totalInvitados");
   const totalPersonas = document.getElementById("totalPersonas");
+  const btnLogout = document.getElementById("btnLogout");
 
-  const CLAVE_ADMIN = "carla15"; // 🔐 Cambiala por la que quieras
-
-  // 🔥 Inicializa Firebase directamente acá
+  // === Configuración Firebase ===
   const firebaseConfig = {
     apiKey: "AIzaSyA-QwW-E22kLuc5_2-ohN2Z9IJ_2rjaGz8",
     authDomain: "fiestacarla-7c026.firebaseapp.com",
@@ -27,19 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  console.log("DB conectada:", db);
 
-  btnLogin.addEventListener("click", () => {
-    if (inputClave.value === CLAVE_ADMIN) {
-      loginDiv.classList.add("oculto");
-      panelDiv.classList.remove("oculto");
-      cargarConfirmaciones();
-    } else {
-      alert("Contraseña incorrecta ❌");
-    }
-  });
+  console.log("✅ DB conectada:", db);
 
-function cargarConfirmaciones() {
+  // === Función para cargar confirmaciones ===
+  function cargarConfirmaciones() {
+    if (!tabla) return; // si la página no tiene tabla, no hace nada
+
     const q = query(collection(db, "confirmaciones"), orderBy("timestamp", "desc"));
     onSnapshot(q, (snapshot) => {
       tabla.innerHTML = "";
@@ -58,32 +53,63 @@ function cargarConfirmaciones() {
           </tr>`;
         tabla.innerHTML += fila;
 
-        // Contadores
         cantidadRegistros++;
         totalAsistentes += parseInt(data.cantidad) || 0;
       });
 
-      // Mostrar totales
-      totalInvitados.textContent = cantidadRegistros;
-      totalPersonas.textContent = totalAsistentes;
+      // Mostrar totales si existen los elementos
+      if (totalInvitados) totalInvitados.textContent = cantidadRegistros;
+      if (totalPersonas) totalPersonas.textContent = totalAsistentes;
     });
-  }  
-});
+  }
 
-// Mostrar/ocultar contraseña
-const toggleBtn = document.getElementById("toggleClave");
-const inputClave = document.getElementById("clave");
+  // === Mostrar / Ocultar contraseña (solo si hay input) ===
+  const toggleBtn = document.getElementById("toggleClave");
+  if (toggleBtn && inputClave) {
+    toggleBtn.addEventListener("click", () => {
+      const mostrar = inputClave.type === "password";
+      inputClave.type = mostrar ? "text" : "password";
+      const icon = toggleBtn.querySelector("i");
+      icon.classList.toggle("bi-eye");
+      icon.classList.toggle("bi-eye-slash");
+    });
+  }
 
-if (toggleBtn && inputClave) {
-  toggleBtn.addEventListener("click", () => {
-    const mostrar = inputClave.type === "password";
-    inputClave.type = mostrar ? "text" : "password";
+  // === Modo página de confirmaciones ===
+  // Si no hay login pero hay tabla, cargar datos directo (para páginas internas)
+  if (!loginDiv && tabla) {
+    console.log("📋 Página de confirmaciones: cargando datos...");
+    cargarConfirmaciones();
+    return;
+  }
 
-    const icon = toggleBtn.querySelector("i");
-    icon.classList.toggle("bi-eye");
-    icon.classList.toggle("bi-eye-slash");
+  // === Modo página principal con login ===
+  const CLAVE_ADMIN = "carla15";
+  const adminLogueado = localStorage.getItem("adminLogueado");
+
+  if (adminLogueado === "true") {
+    loginDiv?.classList.add("oculto");
+    panelDiv?.classList.remove("oculto");
+    cargarConfirmaciones();
+  }
+
+  btnLogin?.addEventListener("click", () => {
+    if (inputClave.value === CLAVE_ADMIN) {
+      localStorage.setItem("adminLogueado", "true");
+      loginDiv.classList.add("oculto");
+      panelDiv.classList.remove("oculto");
+      cargarConfirmaciones();
+    } else {
+      alert("Contraseña incorrecta ❌");
+    }
   });
-}
+
+  btnLogout?.addEventListener("click", () => {
+    localStorage.removeItem("adminLogueado");
+    location.reload();
+  });
+
+});
 
 
 

@@ -385,3 +385,25 @@ form button {
   }
 }
 
+/* administrador */
+.oculto {
+     display: none; }
+
+#toggleClave {
+  background-color: white;         /* mismo fondo que el input */
+  border: 1px solid #ced4da;       /* igual borde que los inputs Bootstrap */
+  border-left: none;               /* evita borde doble entre input y botón */
+  color: #6c757d;                  /* color gris del icono */
+}
+
+#toggleClave:hover {
+  background-color: #f8f9fa;       /* un leve gris al pasar el mouse */
+}
+
+#toggleClave i {
+  pointer-events: none;            /* evita que el click sea sobre el ícono */
+}
+
+.admin{
+  margin-top: 40px;
+}
