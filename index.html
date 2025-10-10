@@ -420,7 +420,7 @@
 
       <!--Bloque de Elegir cancion -->
 
-      <div class="evento-box musica">
+      <!-- <div class="evento-box musica"> -->
         <h3 class="titulo">Música</h3>
         <div class="separador">
           <img src="fotos/notasMusicales.gif" alt="separador">
@@ -428,17 +428,17 @@
         <p class="subtitulo">Cual es la cancion que</p>
         <p class="subtitulo">no puede faltar?</p>
         <button onclick="abrirDialogo('agendaCancion')">Sugerir canción</button>
-      </div>
+      <!-- </div> -->
 
       <!-- Dialogo Elegir cancion -->
       <dialog id="agendaCancion">
-        <form id="cancionForm">
-          <h2>Pedi tu canción:</h2>
-          <label for="nombre">Tu nombre:</label>
-          <input type="text" id="nombre1" name="nombre1" required>
-          <label for="cancion">Canción que queres escuchar:</label>
-          <input type="text" id="cancion" name="cancion" required>
-          <button type="submit">Enviar</button>
+        <h2>Pedi tu canción:</h2>
+        <form id="cancionForm">          
+          <!-- <label for="nombre">Tu nombre:</label> -->
+          <input type="text" id="nombre1" name="nombre1" placeholder="Nombre" required>
+          <!-- <label for="cancion"></label> -->
+          <input type="text" id="cancion" name="cancion" placeholder="Canción que queres escuchar"required>
+          <button type="submit" class="botonGrande">Enviar</button>
           <button onclick="cerrarDialogo('agendaCancion')">Cerrar</button>
         </form>
         <p id="mensaj" style="color:white; display:none; margin-top:10px;">

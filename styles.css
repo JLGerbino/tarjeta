@@ -235,13 +235,12 @@ dialog::backdrop {
   background:(254, 245, 238);
   transform: scale(1.1);
 }
-.musica {
+/* .musica {
   align-items: center;
   width: 400px;
   border-color: #ebc690;
-  
+} */
 
-}
 /*Formulario de consultas*/
 form {
   max-width: 500px;
@@ -271,7 +270,9 @@ form input,
 form textarea {
   width: 100%;
   padding: 5px 7px; /* 10px 12px; */
-  border: 1px solid rgb(254, 245, 238);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-bottom: 1px solid rgb(254, 245, 238);
   border-radius: 8px;
   font-size: 1em;
   box-sizing: border-box;
@@ -280,11 +281,15 @@ form textarea {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+form ::placeholder{
+  color: rgb(254, 245, 238);
+}
+
 form input:focus,
 form textarea:focus {
-  border-color: white;
+  /* border-color: white; */
   outline: none;
-  box-shadow: 0 0 6px rgba(252, 251, 249, 0.6);
+  /* box-shadow: 0 0 6px rgba(252, 251, 249, 0.6); */
 }
 
 form button {

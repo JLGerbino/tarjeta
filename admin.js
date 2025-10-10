@@ -136,10 +136,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     localStorage.removeItem("adminLogueado");
     location.reload();
   });
-
 });
 
 
 
 
 
+ 
