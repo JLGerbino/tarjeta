@@ -21,39 +21,39 @@ musicToggle.addEventListener("click", () => {
 
 // Función para actualizar con efecto flip
 function updateFlip(id, newValue) {
-    const el = document.getElementById(id);
-    const formattedValue = String(newValue).padStart(2, "0"); // Siempre con 2 dígitos
+  const el = document.getElementById(id);
+  const formattedValue = String(newValue).padStart(2, "0"); // Siempre con 2 dígitos
 
-    if (el.innerText !== formattedValue) {
-        el.classList.remove("animate");
-        void el.offsetWidth; // ⚡ reinicia la animación
-        el.innerText = formattedValue;
-        el.classList.add("animate");
-    }
+  if (el.innerText !== formattedValue) {
+    el.classList.remove("animate");
+    void el.offsetWidth; // ⚡ reinicia la animación
+    el.innerText = formattedValue;
+    el.classList.add("animate");
+  }
 }
 
 // Cuenta regresiva
 const targetDate = new Date("2025-12-13T21:00:00").getTime();
 
 const countdown = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+  const now = new Date().getTime();
+  const distance = targetDate - now;
 
-    if (distance < 0) {
-        clearInterval(countdown);
-        document.getElementById("timer").innerHTML = '<h1 class="mensaje-fiesta">A disfrutar la fiesta!</h1>';
-        return;
-    }
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("timer").innerHTML = '<h1 class="mensaje-fiesta">A disfrutar la fiesta!</h1>';
+    return;
+  }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    updateFlip("days", days);
-    updateFlip("hours", hours);
-    updateFlip("minutes", minutes);
-    updateFlip("seconds", seconds);
+  updateFlip("days", days);
+  updateFlip("hours", hours);
+  updateFlip("minutes", minutes);
+  updateFlip("seconds", seconds);
 }, 1000);
 
 function abrirDialogo(id) {
@@ -69,7 +69,7 @@ const evento = {
   titulo: "Fiesta 15 años de Carla",
   descripcion: "¡No faltes a la fiesta de 15 de Carla!",
   ubicacion: "La Fontana Eventos - Ruta 177 y calle Tito Martin - Villa Cosntitución",
-  inicio: "2025-12-13T21:00:00", 
+  inicio: "2025-12-13T21:00:00",
   fin: "2025-12-14T05:00:00"
 };
 
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const respuesta = await fetch(form.action, {
         method: form.method.toUpperCase() || "POST",
         body: datos,
-        headers: { "Accept": "application/json" } // pedimos JSON para verificar errores
+        headers: { "Accept": "application/json" } // pido JSON para verificar errores
       });
 
       if (respuesta.ok) {
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const errJson = await respuesta.json();
           if (errJson && errJson.error) errText = errJson.error;
-        } catch {}
+        } catch { }
         alert("No se pudo enviar el formulario: " + errText);
         console.error("Form submit failed:", respuesta);
       }
@@ -217,27 +217,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* const form = document.getElementById("miFormulario");
-const mensaje = document.getElementById("mensaje");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("cancionForm");
+  const mensaje = document.getElementById("mensaj");
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nombre = form.nombre1.value.trim();
+      const cancion = form.cancion.value.trim();
 
-  const datos = new FormData(form);
+      try {
+        await addDoc(collection(db, "canciones"), {
+          cancion,
+          nombre,
+        });
 
-  const respuesta = await fetch(form.action, {
-    method: form.method,
-    body: datos,
-    headers: { 'Accept': 'application/json' }
-  });
-
-  if (respuesta.ok) {
-    form.reset(); 
-    mensaje.style.display = "block"; 
-    setTimeout(() => {
-      mensaje.style.display = "none";
-    }, 3000);
-  } else {
-    alert("Hubo un error al enviar. Intenta de nuevo.");
+        form.reset();
+        mensaje.style.display = "block";
+        setTimeout(() => (mensaje.style.display = "none"), 3000);
+      } catch (error) {
+        console.error("Error al guardar:", error);
+        alert("Hubo un error al registrar tu asistencia. Intenta de nuevo.");
+      }
+    });
   }
-}); */
+});
+
+

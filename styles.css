@@ -235,7 +235,13 @@ dialog::backdrop {
   background:(254, 245, 238);
   transform: scale(1.1);
 }
+.musica {
+  align-items: center;
+  width: 400px;
+  border-color: #ebc690;
+  
 
+}
 /*Formulario de consultas*/
 form {
   max-width: 500px;
@@ -311,10 +317,9 @@ form button {
   background: #f7f7f7;
   transform: scale(1.02);
 }
-
-
-
-
+.pie{
+  margin-top: 70px;
+}
 
 /*Ajustes Responsive*/
 @media (max-width: 768px) {

@@ -6,7 +6,7 @@ import {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  // === Elementos del DOM (puede que algunos no existan según la página) ===
+  // === Elementos del DOM (algunos pueden no existir según la página) ===
   const loginDiv = document.getElementById("login");
   const panelDiv = document.getElementById("panel");
   const tabla = document.getElementById("tablaConfirmaciones");
@@ -15,8 +15,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const totalInvitados = document.getElementById("totalInvitados");
   const totalPersonas = document.getElementById("totalPersonas");
   const btnLogout = document.getElementById("btnLogout");
+  const toggleBtn = document.getElementById("toggleClave");
 
-  // === Configuración Firebase ===
+  const CLAVE_ADMIN = "carla15"; // 🔐 Contraseña de acceso
+
+  // === Inicializar Firebase ===
   const firebaseConfig = {
     apiKey: "AIzaSyA-QwW-E22kLuc5_2-ohN2Z9IJ_2rjaGz8",
     authDomain: "fiestacarla-7c026.firebaseapp.com",
@@ -28,12 +31,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-
-  console.log("✅ DB conectada:", db);
+  console.log("✅ Firebase conectado correctamente");
 
   // === Función para cargar confirmaciones ===
   function cargarConfirmaciones() {
-    if (!tabla) return; // si la página no tiene tabla, no hace nada
+    if (!tabla) return;
 
     const q = query(collection(db, "confirmaciones"), orderBy("timestamp", "desc"));
     onSnapshot(q, (snapshot) => {
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <tr>
             <td>${data.nombre}</td>
             <td>${data.cantidad}</td>
-            <td>${data.comentario}</td>
+            <td>${data.comentario || ""}</td>
             <td>${fecha}</td>
           </tr>`;
         tabla.innerHTML += fila;
@@ -57,14 +59,32 @@ document.addEventListener("DOMContentLoaded", async () => {
         totalAsistentes += parseInt(data.cantidad) || 0;
       });
 
-      // Mostrar totales si existen los elementos
       if (totalInvitados) totalInvitados.textContent = cantidadRegistros;
       if (totalPersonas) totalPersonas.textContent = totalAsistentes;
     });
   }
 
-  // === Mostrar / Ocultar contraseña (solo si hay input) ===
-  const toggleBtn = document.getElementById("toggleClave");
+  // === Función para cargar canciones ===
+  function cargarCanciones() {
+    if (!tabla) return;
+
+    const q = query(collection(db, "canciones"));
+    onSnapshot(q, (snapshot) => {
+      tabla.innerHTML = "";
+
+      snapshot.forEach((doc) => {        
+        const data = doc.data();        
+        const fila = `
+          <tr>
+            <td>${data.nombre}</td>
+            <td>${data.cancion}</td>            
+          </tr>`;
+        tabla.innerHTML += fila;
+      });
+    });
+  }
+
+  // === Mostrar / Ocultar contraseña ===
   if (toggleBtn && inputClave) {
     toggleBtn.addEventListener("click", () => {
       const mostrar = inputClave.type === "password";
@@ -75,42 +95,49 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  // === Modo página de confirmaciones ===
-  // Si no hay login pero hay tabla, cargar datos directo (para páginas internas)
-  if (!loginDiv && tabla) {
-    console.log("📋 Página de confirmaciones: cargando datos...");
+  // === Detectar en qué página estamos ===
+  const pagina = window.location.pathname;
+
+  // 👉 Si es la página de confirmaciones
+  if (pagina.includes("confirmaciones.html")) {
+    console.log("📋 Cargando confirmaciones...");
     cargarConfirmaciones();
     return;
   }
 
-  // === Modo página principal con login ===
-  const CLAVE_ADMIN = "carla15";
+  // 👉 Si es la página de canciones
+  if (pagina.includes("canciones.html")) {
+    console.log("🎵 Cargando canciones...");
+    cargarCanciones();
+    return;
+  }
+
+  // === Página principal (login del admin) ===
   const adminLogueado = localStorage.getItem("adminLogueado");
 
   if (adminLogueado === "true") {
     loginDiv?.classList.add("oculto");
     panelDiv?.classList.remove("oculto");
-    cargarConfirmaciones();
   }
 
+  // === Login ===
   btnLogin?.addEventListener("click", () => {
     if (inputClave.value === CLAVE_ADMIN) {
       localStorage.setItem("adminLogueado", "true");
       loginDiv.classList.add("oculto");
       panelDiv.classList.remove("oculto");
-      cargarConfirmaciones();
     } else {
       alert("Contraseña incorrecta ❌");
     }
   });
 
+  // === Logout ===
   btnLogout?.addEventListener("click", () => {
     localStorage.removeItem("adminLogueado");
     location.reload();
   });
 
 });
-
 
 
 
