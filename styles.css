@@ -66,6 +66,10 @@ h1, h4, h5, h6 {
   50% { transform: translateY(-10px); }
 }
 
+.boton{
+width: 200px;
+}
+
 button {
   font-family: "Ubuntu Mono", monospace;
   background: rgb(239, 205, 190) ;
@@ -243,11 +247,13 @@ dialog::backdrop {
 
 /*Formulario de consultas*/
 form {
+  background: transparent;
+  border: none;
   max-width: 500px;
-  margin: 40px auto;
-  background:rgb(141, 102, 98);
+  margin: 10px auto;
+  /* background:rgb(141, 102, 98); */
   padding: 25px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   /* box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4); */
   text-align: left;
   animation: fadeInUp 1s ease;
@@ -261,41 +267,68 @@ form h3 {
 
 form label {
   display: block;
+  font-size: 1rem;
+  color: white; /* ajustá según el fondo */
+  margin-bottom: 1px;
+  margin-top: 10px;
+ /*  display: block;
   margin: 12px 0 6px;
   font-weight: bold;
-  color:rgb(254, 245, 238);
+  color:rgb(254, 245, 238); */
 }
 
 form input,
 form textarea {
+  
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1rem;
   width: 100%;
+  padding: 8px 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+
+
+
+  /* width: 100%;
   padding: 5px 7px; /* 10px 12px; */
-  margin-bottom: 10px;
-  margin-top: 10px;
-  border-bottom: 1px solid rgb(254, 245, 238);
-  border-radius: 8px;
-  font-size: 1em;
+  /* margin-bottom: 10px;
+  margin-top: 10px;  */
+  /* border-bottom: 1px solid rgb(254, 245, 238);
+  border-radius: 8px; */
+  /* font-size: 1em;
   box-sizing: border-box;
   background: rgb(141, 102, 98); 
-  color: rgb(254, 245, 238);
-  transition: border-color 0.3s, box-shadow 0.3s;
+  color: rgb(254, 245, 238); */
+  /* transition: border-color 0.3s, box-shadow 0.3s; */
 }
 
 form ::placeholder{
   color: rgb(254, 245, 238);
 }
 
+
 form input:focus,
-form textarea:focus {
-  /* border-color: white; */
-  outline: none;
-  /* box-shadow: 0 0 6px rgba(252, 251, 249, 0.6); */
+form input:hover,
+form textarea:focus,
+form textarea:hover {
+  border-bottom: 1px solid white;
 }
+/* form input:focus,
+form textarea:focus { */
+  /* border-color: white; */
+  /* outline: none; */
+  /* box-shadow: 0 0 6px rgba(252, 251, 249, 0.6); */
+/* } */
 
 form button {
   margin-top: 20px;
   width: 100%;
 }
+
 
 .agenda-opciones {
   display: flex;
@@ -416,4 +449,13 @@ form button {
 
 .admin{
   margin-top: 40px;
+}
+
+.cerrarSesion{
+  background-color: #252222;
+  color: white;  
+}
+.cerrarSesion:hover{
+background:#252222; 
+  transform: scale(1.05);
 }

@@ -6,6 +6,29 @@ import {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
+  // === Protección de páginas ===
+const paginaActual = window.location.pathname;
+
+// Si está en una subpágina de admin (confirmaciones o canciones)
+if (paginaActual.includes("paginasAdmin")) {
+  const adminLogueado = localStorage.getItem("adminLogueado");
+  if (adminLogueado !== "true") {
+    // 🔒 Redirigir al login si no hay sesión
+    window.location.href = "../admin.html"; // ajustá si el login está en otra ruta
+  } else {
+    // Evita que el usuario vuelva atrás y vea páginas cacheadas
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, "", window.location.href);
+    };
+  }
+}
+/* nuevo */
+
+
+
+
+
   // === Elementos del DOM (algunos pueden no existir según la página) ===
   const loginDiv = document.getElementById("login");
   const panelDiv = document.getElementById("panel");
@@ -131,11 +154,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+/* nuevo logout */
+ btnLogout?.addEventListener("click", () => {
+  localStorage.removeItem("adminLogueado");
+  window.location.href = "admin.html"; // o la ruta que uses para el login
+});
+
+
+
   // === Logout ===
-  btnLogout?.addEventListener("click", () => {
+  /* btnLogout?.addEventListener("click", () => {
     localStorage.removeItem("adminLogueado");
     location.reload();
-  });
+  }); */
 });
 
 

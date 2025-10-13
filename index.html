@@ -155,7 +155,7 @@
         <h3 class="titulo">Fiesta</h3>
         <p class="subtitulo">Sábado 13 de Diciembre</p>
         <p class="subtitulo">21 horas</p>
-        <button onclick="abrirDialogo('agendaDialog')">Agendar</button>
+        <button class="boton" onclick="abrirDialogo('agendaDialog')">Agendar</button>
       </div>
 
       <div class="separador">
@@ -249,7 +249,7 @@
         </div> -->
         <h3 class="titulo">Lugar</h3>
         <p class="subtitulo">La Fontana Eventos</p>
-        <button onclick="abrirDialogo('lugar')">Confirmar asistencia</button>
+        <button class="boton" onclick="abrirDialogo('lugar')">Confirmar asistencia</button>
       </div>
 
       <!-- Dialogo Lugar-Confirmar Asistencia -->
@@ -302,7 +302,7 @@
         <h3 class="titulo">Dirección</h3>
         <p class="subtitulo">Ruta 177 y calle Tito Martin</p>
         <p class="subtitulo">Villa Constitución</p>
-        <button onclick="abrirDialogo('mapaDialog')">Como llegar</button>
+        <button class="boton" onclick="abrirDialogo('mapaDialog')">Como llegar</button>
       </div>
 
       <div class="separador">
@@ -341,7 +341,7 @@
         </div> -->
         <h3 class="titulo">Tarjetas</h3>
         <p class="subtitulo">Toda la info</p>
-        <button onclick="abrirDialogo('tarjeta')">Ver</button>
+        <button class="boton" onclick="abrirDialogo('tarjeta')">Ver</button>
       </div>
 
       <div class="separador">
@@ -391,7 +391,7 @@
         </div> -->
         <h3 class="titulo">Dress Code</h3>
         <p class="subtitulo">Vestimenta</p>
-        <button onclick="abrirDialogo('agendaDress')">Ver</button>
+        <button class="boton" onclick="abrirDialogo('agendaDress')">Ver más</button>
       </div>
 
       <div class="separador">
@@ -426,23 +426,23 @@
         </div>
         <p class="subtitulo">Cual es la cancion que</p>
         <p class="subtitulo">no puede faltar?</p>
-        <button onclick="abrirDialogo('agendaCancion')">Sugerir canción</button>
-      
+        <button class="boton" onclick="abrirDialogo('agendaCancion')">Sugerir canción</button>      
 
       <!-- Dialogo Elegir cancion -->
       <dialog id="agendaCancion">
         <h2>Pedi tu canción:</h2>
         <form id="cancionForm">          
-          <!-- <label for="nombre">Tu nombre:</label> -->
-          <input type="text" id="nombre1" name="nombre1" placeholder="Nombre" required>
-          <!-- <label for="cancion"></label> -->
-          <input type="text" id="cancion" name="cancion" placeholder="Canción que queres escuchar"required>
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre1" name="nombre1" required>
+          <label for="cancion">Canción que queres escuchar</label>
+          <input type="text" id="cancion" name="cancion" required>
           <button type="submit" class="botonGrande">Enviar</button>
-          <button onclick="cerrarDialogo('agendaCancion')">Cerrar</button>
+          
         </form>
         <p id="mensaj" style="color:white; display:none; margin-top:10px;">
           ¡Gracias! Tu asistencia fue registrada.
         </p>
+        <button onclick="cerrarDialogo('agendaCancion')">Cerrar</button>
       </dialog>
 
 
