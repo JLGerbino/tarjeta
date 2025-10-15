@@ -1,5 +1,181 @@
-// === Importar Firebase ===
+ // === Importar Firebase ===
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { 
+  getFirestore, collection, query, orderBy, onSnapshot 
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  // === Elementos del DOM (algunos pueden no existir según la página) ===
+  const loginDiv = document.getElementById("login");
+  const panelDiv = document.getElementById("panel");
+  const tabla = document.getElementById("tablaConfirmaciones");
+  const btnLogin = document.getElementById("btnLogin");
+  const inputClave = document.getElementById("clave");
+  const totalInvitados = document.getElementById("totalInvitados");
+  const totalPersonas = document.getElementById("totalPersonas");
+  const btnLogout = document.getElementById("btnLogout");
+  const toggleBtn = document.getElementById("toggleClave");
+
+  const CLAVE_ADMIN = "carla15"; // 🔐 Contraseña de acceso
+
+  // === Inicializar Firebase ===
+  const firebaseConfig = {
+    apiKey: "AIzaSyA-QwW-E22kLuc5_2-ohN2Z9IJ_2rjaGz8",
+    authDomain: "fiestacarla-7c026.firebaseapp.com",
+    projectId: "fiestacarla-7c026",
+    storageBucket: "fiestacarla-7c026.firebasestorage.app",
+    messagingSenderId: "97543193817",
+    appId: "1:97543193817:web:5948e337d2492f2d866ac8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  console.log("✅ Firebase conectado correctamente");
+
+  // === Función para cargar confirmaciones ===
+  function cargarConfirmaciones() {
+    if (!tabla) return;
+    const q = query(collection(db, "confirmaciones"), orderBy("timestamp", "desc"));
+    onSnapshot(q, (snapshot) => {
+      tabla.innerHTML = "";
+      let totalAsistentes = 0;
+      let cantidadRegistros = 0;
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const fecha = data.timestamp?.toDate().toLocaleString() || "-";
+        const fila = `
+          <tr>
+            <td>${data.nombre}</td>
+            <td>${data.cantidad}</td>
+            <td>${data.comentario || ""}</td>
+            <td>${fecha}</td>
+          </tr>`;
+        tabla.innerHTML += fila;
+        cantidadRegistros++;
+        totalAsistentes += parseInt(data.cantidad) || 0;
+      });
+
+      if (totalInvitados) totalInvitados.textContent = cantidadRegistros;
+      if (totalPersonas) totalPersonas.textContent = totalAsistentes;
+    });
+  }
+
+  // === Función para cargar canciones ===
+  function cargarCanciones() {
+    if (!tabla) return;
+    const q = query(collection(db, "canciones"));
+    onSnapshot(q, (snapshot) => {
+      tabla.innerHTML = "";
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const fila = `
+          <tr>
+            <td>${data.nombre}</td>
+            <td>${data.cancion}</td>
+          </tr>`;
+        tabla.innerHTML += fila;
+      });
+    });
+  }
+
+  // === Mostrar / Ocultar contraseña ===
+  if (toggleBtn && inputClave) {
+    toggleBtn.addEventListener("click", () => {
+      const mostrar = inputClave.type === "password";
+      inputClave.type = mostrar ? "text" : "password";
+      const icon = toggleBtn.querySelector("i");
+      icon.classList.toggle("bi-eye");
+      icon.classList.toggle("bi-eye-slash");
+    });
+  }
+
+  // === Detectar en qué página estamos ===
+  const ruta = window.location.pathname;
+
+  // 👉 Confirmaciones
+  if (ruta.includes("confirmaciones.html")) {
+    protegerSubpagina();
+    cargarConfirmaciones();
+    return;
+  }
+
+  // 👉 Canciones
+  if (ruta.includes("canciones.html")) {
+    protegerSubpagina();
+    cargarCanciones();
+    return;
+  }
+
+  // === Página principal (admin.html) ===
+  const adminLogueado = localStorage.getItem("adminLogueado");
+
+  if (adminLogueado === "true") {
+    loginDiv?.classList.add("oculto");
+    panelDiv?.classList.remove("oculto");
+  }
+
+  // === Login ===
+  btnLogin?.addEventListener("click", () => {
+    if (inputClave.value === CLAVE_ADMIN) {
+      localStorage.setItem("adminLogueado", "true");
+      loginDiv.classList.add("oculto");
+      panelDiv.classList.remove("oculto");
+    } else {
+      alert("Contraseña incorrecta ❌");
+    }
+  });
+
+  // === Logout ===
+  btnLogout?.addEventListener("click", () => {
+    localStorage.removeItem("adminLogueado");
+    sessionStorage.clear();
+
+    // 🚨 Limpieza de caché en móviles
+    if ("caches" in window) {
+      caches.keys().then((keys) => keys.forEach((key) => caches.delete(key)));
+    }
+
+    // ✅ Forzar redirección limpia
+    window.location.replace("admin.html");
+    window.location.reload(true);
+  });
+
+  // === Protección para subpáginas ===
+  function protegerSubpagina() {
+    const adminLogueado = localStorage.getItem("adminLogueado");
+    if (adminLogueado !== "true") {
+      window.location.replace("../admin.html");
+      return;
+    }
+
+    // 🚫 Bloquear botón atrás en móviles y escritorio
+    window.history.pushState(null, "", window.location.href);
+    window.addEventListener("popstate", () => {
+      window.history.pushState(null, "", window.location.href);
+    });
+
+    // 🧹 Evitar mostrar páginas cacheadas
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        localStorage.removeItem("adminLogueado");
+        window.location.replace("../admin.html");
+      }
+    });
+  }
+});
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ // === Importar Firebase ===
+/* import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 import { 
   getFirestore, collection, query, orderBy, onSnapshot 
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
@@ -22,7 +198,7 @@ if (paginaActual.includes("paginasAdmin")) {
       window.history.pushState(null, "", window.location.href);
     };
   }
-}
+} */
 /* nuevo */
 
 
@@ -30,7 +206,7 @@ if (paginaActual.includes("paginasAdmin")) {
 
 
   // === Elementos del DOM (algunos pueden no existir según la página) ===
-  const loginDiv = document.getElementById("login");
+  /* const loginDiv = document.getElementById("login");
   const panelDiv = document.getElementById("panel");
   const tabla = document.getElementById("tablaConfirmaciones");
   const btnLogin = document.getElementById("btnLogin");
@@ -86,8 +262,8 @@ if (paginaActual.includes("paginasAdmin")) {
       if (totalPersonas) totalPersonas.textContent = totalAsistentes;
     });
   }
-
-  // === Función para cargar canciones ===
+ */
+  /* // === Función para cargar canciones ===
   function cargarCanciones() {
     if (!tabla) return;
 
@@ -155,21 +331,14 @@ if (paginaActual.includes("paginasAdmin")) {
   });
 
 /* nuevo logout */
- btnLogout?.addEventListener("click", () => {
+ /* btnLogout?.addEventListener("click", () => {
   localStorage.removeItem("adminLogueado");
   window.location.href = "admin.html"; // o la ruta que uses para el login
 });
 
-
-
-  // === Logout ===
-  /* btnLogout?.addEventListener("click", () => {
-    localStorage.removeItem("adminLogueado");
-    location.reload();
-  }); */
+ 
 });
-
-
+ */
 
 
 
